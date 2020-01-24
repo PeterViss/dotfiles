@@ -92,13 +92,15 @@ let g:airline_symbols={}
 let g:airline_symbols.maxlinenr = ''
 let g:airline_skip_empty_sections = 1
 let g:airline_theme = "oceanicnext"
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#whitespace#enabled = 0
 let g:lightline = { 'colorscheme': 'oceanicnext' }
 "let g:syntastic_javascript_checkers=['eslint']
 let g:syntastic_check_on_wq = 0
-"let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_ruby_checkers = ['rubocop', 'mri']
-
+let g:NERDTreeMinimalUI=1
 map <C-n> :NERDTreeToggle<CR>
 
 "COC CONFIGURATION
@@ -226,3 +228,7 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 
 "END OF COC CONFIGURATION
+nmap <Up> <Nop>
+nmap <Right> <Nop>
+nmap <Left> <Nop>
+nmap <Down> <Nop>
