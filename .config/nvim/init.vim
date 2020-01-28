@@ -38,11 +38,10 @@ Plug 'vim-ruby/vim-ruby'
 call plug#end()
 
 set number
-set linebreak
-set showbreak=+++
 set textwidth=0
 set showmatch
 set relativenumber
+set nowrap
 
 set nohlsearch
 set smartcase
