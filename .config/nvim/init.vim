@@ -20,10 +20,8 @@ Plug 'pangloss/vim-javascript'
 Plug 'nightsense/snow'
 Plug 'ryanoasis/vim-devicons'
 Plug 'haishanh/night-owl.vim'
-Plug 'scrooloose/nerdTree'
 Plug 'flrnd/plastic.vim'
 Plug 'sheerun/vim-polyglot'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-git'
@@ -35,6 +33,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vividchalk'
 Plug 'vim-ruby/vim-ruby'
+Plug 'scrooloose/nerdTree'
 call plug#end()
 
 set number
@@ -42,6 +41,8 @@ set textwidth=0
 set showmatch
 set relativenumber
 set nowrap
+" set cursorline
+set cursorcolumn
 
 set nohlsearch
 set smartcase
@@ -100,11 +101,18 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_ruby_checkers = ['rubocop', 'mri']
 let g:NERDTreeMinimalUI=1
+" enable line numbers
+let NERDTreeShowLineNumbers=1
+" make sure relative line numbers are used
+autocmd FileType nerdtree setlocal relativenumber
+
 map <C-n> :NERDTreeToggle<CR>
+autocmd FileType json setlocal equalprg=python\ -m\ json.tool
 
 "COC CONFIGURATION
 "
 " CocInstall
+""  'coc-tslint'
 ""  'coc-json',
 ""  'coc-eslint',
 ""  'coc-html'
@@ -191,8 +199,8 @@ omap if <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
 
 " Use <TAB> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
+" nmap <silent> <TAB> <Plug>(coc-range-select)
+" xmap <silent> <TAB> <Plug>(coc-range-select)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
