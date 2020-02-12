@@ -1,5 +1,5 @@
 call plug#begin()
-Plug 'APZelos/blamer.nvim'
+Plug 'tveskag/nvim-blame-line'
 Plug 'Raimondi/delimitMate'
 Plug 'mhartington/oceanic-next'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -14,10 +14,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'neoclide/coc.nvim',{'branch': 'release'}
 Plug 'ngmy/vim-rubocop'
 Plug 'ayu-theme/ayu-vim'
-Plug 'vim-syntastic/syntastic'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'pangloss/vim-javascript'
-Plug 'nightsense/snow'
 Plug 'ryanoasis/vim-devicons'
 Plug 'haishanh/night-owl.vim'
 Plug 'flrnd/plastic.vim'
@@ -34,6 +32,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vividchalk'
 Plug 'vim-ruby/vim-ruby'
 Plug 'scrooloose/nerdTree'
+Plug 'vim-syntastic/syntastic'
 call plug#end()
 
 set number
@@ -47,6 +46,7 @@ set cursorcolumn
 set nohlsearch
 set smartcase
 set ignorecase
+set synmaxcol=300
 set incsearch
 
 set autoindent
@@ -62,7 +62,7 @@ set backspace=indent,eol,start
 " if hidden is not set, TextEdit might fail.
 set hidden
 
-set title
+" set title
 " Some servers have issues with backup files, see #649
 set nobackup
 set nowritebackup
@@ -79,14 +79,12 @@ set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
 
-autocmd StdinReadPre * let s:std_in=1
+"autocmd StdinReadPre * let s:std_in=1
 
 set termguicolors     " enable true colors support
-let ayucolor="mirage" " for mirage version of theme
 set background=dark
 syntax on
 colorscheme OceanicNext
-let g:blamer_enabled = 1
 
 let g:airline_symbols={}
 let g:airline_symbols.maxlinenr = ''
@@ -95,18 +93,26 @@ let g:airline_theme = "oceanicnext"
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#whitespace#enabled = 0
 let g:lightline = { 'colorscheme': 'oceanicnext' }
+
+let g:blameLineGitFormat = '%an / %ar / %s'
+let g:blameLineUseVirtualText = 1
+nnoremap <silent> <leader>b :ToggleBlameLine<CR>
+" autocmd BufEnter * EnableBlameLine
+
 "let g:syntastic_javascript_checkers=['eslint']
 let g:syntastic_check_on_wq = 0
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_ruby_checkers = ['rubocop', 'mri']
+
 let g:NERDTreeMinimalUI=1
 " enable line numbers
 let NERDTreeShowLineNumbers=1
 " make sure relative line numbers are used
 autocmd FileType nerdtree setlocal relativenumber
-
 map <C-n> :NERDTreeToggle<CR>
+
+" format json files with '='
 autocmd FileType json setlocal equalprg=python\ -m\ json.tool
 
 "COC CONFIGURATION
