@@ -1,4 +1,5 @@
 call plug#begin()
+Plug 'mattn/emmet-vim'
 Plug 'tveskag/nvim-blame-line'
 Plug 'Raimondi/delimitMate'
 Plug 'mhartington/oceanic-next'
@@ -41,12 +42,14 @@ set showmatch
 set relativenumber
 set nowrap
 " set cursorline
-set cursorcolumn
+" set cursorcolumn
 
-set nohlsearch
+set hlsearch
+" hi Search identifier ctermfg=magenta
+
 set smartcase
 set ignorecase
-set synmaxcol=300
+set synmaxcol=3000
 set incsearch
 
 set autoindent
@@ -54,6 +57,9 @@ set expandtab
 set shiftwidth=2
 set softtabstop=2
 set tabstop=8
+set nojoinspaces
+
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 set ruler
 
@@ -79,12 +85,16 @@ set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
 
+set omnifunc=htmlcomplete#CompleteTags
+
 "autocmd StdinReadPre * let s:std_in=1
 
 set termguicolors     " enable true colors support
 set background=dark
 syntax on
 colorscheme OceanicNext
+hi Search guibg=DarkGrey guifg=Black ctermbg=DarkGrey ctermfg=Black
+hi IncSearch guibg=DarkGrey guifg=Black ctermbg=DarkGrey ctermfg=Black
 
 let g:airline_symbols={}
 let g:airline_symbols.maxlinenr = ''
@@ -114,6 +124,10 @@ map <C-n> :NERDTreeToggle<CR>
 
 " format json files with '='
 autocmd FileType json setlocal equalprg=python\ -m\ json.tool
+
+" Emmet Configurations
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
 
 "COC CONFIGURATION
 "
@@ -207,6 +221,10 @@ omap af <Plug>(coc-funcobj-a)
 " Use <TAB> for select selections ranges, needs server support, like: coc-tsserver, coc-python
 " nmap <silent> <TAB> <Plug>(coc-range-select)
 " xmap <silent> <TAB> <Plug>(coc-range-select)
+
+" Custom Map Coc Errors
+nmap <silent> <c-k> <Plug>(coc-diagnostic-prev)
+nmap <silent> <c-j> <Plug>(coc-diagnostic-next)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
