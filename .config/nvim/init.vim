@@ -8,7 +8,6 @@ Plug 'beautify-web/js-beautify'
 Plug 'bogado/file-line'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'maxmellon/vim-jsx-pretty'
 Plug 'vim-airline/vim-airline'
 Plug 'joshdick/onedark.vim'
 Plug 'vim-airline/vim-airline-themes'
@@ -16,7 +15,6 @@ Plug 'neoclide/coc.nvim',{'branch': 'release'}
 Plug 'ngmy/vim-rubocop'
 Plug 'ayu-theme/ayu-vim'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'pangloss/vim-javascript'
 Plug 'ryanoasis/vim-devicons'
 Plug 'haishanh/night-owl.vim'
 Plug 'flrnd/plastic.vim'
@@ -32,6 +30,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vividchalk'
 Plug 'vim-ruby/vim-ruby'
+Plug 'onemanstartup/vim-slim'
 Plug 'scrooloose/nerdTree'
 Plug 'vim-syntastic/syntastic'
 call plug#end()
@@ -40,16 +39,16 @@ set number
 set textwidth=0
 set showmatch
 set relativenumber
-set nowrap
+set wrap nolist linebreak
+set showbreak=++++
 " set cursorline
 " set cursorcolumn
 
 set hlsearch
-" hi Search identifier ctermfg=magenta
 
 set smartcase
 set ignorecase
-set synmaxcol=3000
+set synmaxcol=300
 set incsearch
 
 set autoindent
@@ -128,6 +127,8 @@ autocmd FileType json setlocal equalprg=python\ -m\ json.tool
 " Emmet Configurations
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
+
+let g:polyglot_disabled= ['slim']
 
 "COC CONFIGURATION
 "
