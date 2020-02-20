@@ -48,7 +48,7 @@ set hlsearch
 
 set smartcase
 set ignorecase
-set synmaxcol=300
+set synmaxcol=3000
 set incsearch
 
 set autoindent
