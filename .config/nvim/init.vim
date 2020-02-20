@@ -29,6 +29,7 @@ Plug 'tpope/vim-rbenv'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vividchalk'
+Plug 'tpope/vim-abolish'
 Plug 'vim-ruby/vim-ruby'
 Plug 'onemanstartup/vim-slim'
 Plug 'scrooloose/nerdTree'
@@ -94,6 +95,8 @@ syntax on
 colorscheme OceanicNext
 hi Search guibg=DarkGrey guifg=Black ctermbg=DarkGrey ctermfg=Black
 hi IncSearch guibg=DarkGrey guifg=Black ctermbg=DarkGrey ctermfg=Black
+hi CursorLine   cterm=NONE ctermbg=LightGrey ctermfg=NONE guibg=LightGrey guifg=LightGrey
+hi CursorColumn cterm=NONE ctermbg=LightGrey ctermfg=NONE guibg=LightGrey guifg=LightGrey
 
 let g:airline_symbols={}
 let g:airline_symbols.maxlinenr = ''
