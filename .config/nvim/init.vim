@@ -40,7 +40,7 @@ set textwidth=0
 set showmatch
 set relativenumber
 set wrap nolist linebreak
-set showbreak=++++
+set showbreak=****
 " set cursorline
 " set cursorcolumn
 
