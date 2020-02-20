@@ -28,6 +28,7 @@ Plug 'tpope/vim-rake'
 Plug 'tpope/vim-rbenv'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-vividchalk'
 Plug 'tpope/vim-abolish'
 Plug 'vim-ruby/vim-ruby'
@@ -41,7 +42,10 @@ set textwidth=0
 set showmatch
 set relativenumber
 set wrap nolist linebreak
-set showbreak=****
+set showbreak=***
+set breakindent
+set breakindentopt+=sbr
+set cpoptions+=n
 " set cursorline
 " set cursorcolumn
 
@@ -95,8 +99,8 @@ syntax on
 colorscheme OceanicNext
 hi Search guibg=DarkGrey guifg=Black ctermbg=DarkGrey ctermfg=Black
 hi IncSearch guibg=DarkGrey guifg=Black ctermbg=DarkGrey ctermfg=Black
-hi CursorLine   cterm=NONE ctermbg=LightGrey ctermfg=NONE guibg=LightGrey guifg=LightGrey
-hi CursorColumn cterm=NONE ctermbg=LightGrey ctermfg=NONE guibg=LightGrey guifg=LightGrey
+" hi CursorLine   cterm=NONE ctermbg=LightGrey ctermfg=NONE guibg=LightGrey guifg=LightGrey
+" hi CursorColumn cterm=NONE ctermbg=LightGrey ctermfg=NONE guibg=LightGrey guifg=LightGrey
 
 let g:airline_symbols={}
 let g:airline_symbols.maxlinenr = ''
