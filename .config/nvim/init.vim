@@ -45,6 +45,7 @@ set wrap nolist linebreak
 set showbreak=***
 set breakindent
 set breakindentopt+=sbr
+" let &showbreak=' '
 set cpoptions+=n
 " set cursorline
 " set cursorcolumn
