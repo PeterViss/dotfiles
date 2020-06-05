@@ -98,7 +98,7 @@ set signcolumn=yes
 set omnifunc=htmlcomplete#CompleteTags
 
 "autocmd StdinReadPre * let s:std_in=1
-let g:indentLine_char = '|'
+let g:indentLine_char = '│'
 "let g:syntastic_javascript_checkers=['eslint']
 let g:syntastic_ruby_checkers = ['rubocop', 'mri', 'jruby']
 let g:syntastic_auto_jump = 0
