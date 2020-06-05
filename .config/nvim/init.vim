@@ -6,12 +6,14 @@ Plug 'mhartington/oceanic-next'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'beautify-web/js-beautify'
 Plug 'bogado/file-line'
+Plug 'Yggdroot/indentLine'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'joshdick/onedark.vim'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'neoclide/coc.nvim',{'branch': 'release'}
+Plug 'vim-syntastic/syntastic'
 Plug 'ngmy/vim-rubocop'
 Plug 'ayu-theme/ayu-vim'
 Plug 'ntpeters/vim-better-whitespace'
@@ -31,24 +33,27 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-vividchalk'
 Plug 'tpope/vim-abolish'
-Plug 'vim-ruby/vim-ruby'
 Plug 'onemanstartup/vim-slim'
 Plug 'scrooloose/nerdTree'
-Plug 'vim-syntastic/syntastic'
 call plug#end()
 
 set number
-set textwidth=0
+" set textwidth=0
 set showmatch
 set relativenumber
-set wrap nolist linebreak
-set showbreak=***
+set nowrap
+" set wrap nolist linebreak
+" set showbreak=****
 set breakindent
 set breakindentopt+=sbr
 " let &showbreak=' '
 set cpoptions+=n
 " set cursorline
 " set cursorcolumn
+"
+set path+=**
+set wildignore+=**/node_modules/**
+command! MakeTags !ctags -R .
 
 set hlsearch
 
@@ -93,6 +98,13 @@ set signcolumn=yes
 set omnifunc=htmlcomplete#CompleteTags
 
 "autocmd StdinReadPre * let s:std_in=1
+let g:indentLine_char = '|'
+"let g:syntastic_javascript_checkers=['eslint']
+let g:syntastic_ruby_checkers = ['rubocop', 'mri', 'jruby']
+let g:syntastic_auto_jump = 0
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_auto_loc_list = 0
 
 set termguicolors     " enable true colors support
 set background=dark
@@ -115,12 +127,6 @@ let g:blameLineGitFormat = '%an / %ar / %s'
 let g:blameLineUseVirtualText = 1
 nnoremap <silent> <leader>b :ToggleBlameLine<CR>
 " autocmd BufEnter * EnableBlameLine
-
-"let g:syntastic_javascript_checkers=['eslint']
-let g:syntastic_check_on_wq = 0
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_ruby_checkers = ['rubocop', 'mri']
 
 let g:NERDTreeMinimalUI=1
 " enable line numbers
