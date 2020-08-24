@@ -26,6 +26,8 @@ eval "$(direnv hook bash)"
 
 set -o vi
 
+set GIT_PROMPT_THEME=Single_line
+
 source ~/.bashrc
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"

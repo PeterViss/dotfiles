@@ -145,6 +145,12 @@ autocmd FileType html,css EmmetInstall
 
 let g:polyglot_disabled= ['slim']
 
+" nnoremap <silent> <C-Right> <c-w>l
+" nnoremap <silent> <C-Left> <c-w>h
+" nnoremap <silent> <C-Up> <c-w>k
+" nnoremap <silent> <C-Down> <c-w>j
+nnoremap <S-Right> :bn<CR>
+nnoremap <S-Left> :bp<CR>
 "COC CONFIGURATION
 "
 " CocInstall
