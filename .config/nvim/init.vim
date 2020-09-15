@@ -2,6 +2,7 @@ call plug#begin()
 Plug 'mattn/emmet-vim'
 Plug 'tveskag/nvim-blame-line'
 " Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'Raimondi/delimitMate'
 Plug 'mhartington/oceanic-next'
@@ -99,12 +100,10 @@ set signcolumn=yes
 set omnifunc=htmlcomplete#CompleteTags
 
 " FZF STUFF
-set rtp+=/usr/local/opt/fzf
 command! -bang AppFiles call fzf#vim#files('app/', <bang>0)
 command! -bang CsFiles call fzf#vim#files('app/assets/javascripts', <bang>0)
 command! -bang JsFiles call fzf#vim#files('app/javascripts/src/', <bang>0)
 command! -bang Src call fzf#vim#files('src/', <bang>0)
-command! -bang RgFzf call fzf#vim#grep('src/', <bang>0)
 " command! -bang JRg call fzf#vim#grep('app/assets/javascripts', <bang>0)
 
 "autocmd StdinReadPre * let s:std_in=1
