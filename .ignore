@@ -48,3 +48,4 @@ vagrant
 vendor
 yarn-error.lock
 yarn.lock
+/Pictures

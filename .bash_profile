@@ -9,8 +9,7 @@ export FZF_DEFAULT_COMMAND="rg --files --hidden"
 export FZF_DEFAULT_OPTS="--height 40% --layout=reverse"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS --select-1 --exit-0"
-# export FZF_CTRL_R_OP=""
-export FZF_COMPLETION_OPTS='$FZF_CTRL_T_OPTS'
+export FZF_COMPLETION_OPTS="$FZF_CTRL_T_OPTS"
 
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
