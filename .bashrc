@@ -8,6 +8,8 @@ alias be='bundle exec'
 alias vi='nvim'
 alias refresh='source ~/'
 alias refreshMercury='source ~/Documents/mercury/'
+alias fzfi='rg --files --hidden --follow --no-ignore-vcs -g "!{node_modules,.git}" | fzf'
+export FZF_DEFAULT_COMMAND='rg --files'
 
 function git_branch() {
     inside_git_repo="$(git rev-parse --is-inside-work-tree 2>/dev/null)"
@@ -37,3 +39,6 @@ shopt -s checkwinsize
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
+
+source /usr/local/opt/fzf/shell/key-bindings.bash
+source /usr/local/opt/fzf/shell/completion.bash
