@@ -32,16 +32,11 @@ db
 doc
 docker
 docker-compose.yml
-features
 fixtures
-log
 node_modules
 package.json
 postcss.config.js
-public
-sandbox
 tags
-tmp
 tmp
 tools
 vagrant

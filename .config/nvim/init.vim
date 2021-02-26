@@ -1,6 +1,7 @@
 call plug#begin()
 Plug 'mattn/emmet-vim'
 Plug 'tveskag/nvim-blame-line'
+Plug 'michaeljsmith/vim-indent-object'
 " Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -24,6 +25,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'haishanh/night-owl.vim'
 Plug 'flrnd/plastic.vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'jgdavey/vim-blockle'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-git'
@@ -36,6 +38,9 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-vividchalk'
 Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-unimpaired'
 Plug 'onemanstartup/vim-slim'
 Plug 'scrooloose/nerdTree'
 call plug#end()
@@ -102,8 +107,9 @@ set omnifunc=htmlcomplete#CompleteTags
 " FZF STUFF
 command! -bang AppFiles call fzf#vim#files('app/', <bang>0)
 command! -bang CsFiles call fzf#vim#files('app/assets/javascripts', <bang>0)
-command! -bang JsFiles call fzf#vim#files('app/javascripts/src/', <bang>0)
+command! -bang JsFiles call fzf#vim#files('app/javascript/src/', <bang>0)
 command! -bang Src call fzf#vim#files('src/', <bang>0)
+command! -bang EOperation call fzf#vim#files('app/operations/', <bang>0)
 " command! -bang JRg call fzf#vim#grep('app/assets/javascripts', <bang>0)
 
 "autocmd StdinReadPre * let s:std_in=1
@@ -137,7 +143,7 @@ let g:lightline = { 'colorscheme': 'oceanicnext' }
 
 let g:blameLineGitFormat = '%an / %ar / %s'
 let g:blameLineUseVirtualText = 1
-nnoremap <silent> <leader>b :ToggleBlameLine<CR>
+nnoremap <silent> <leader>B :ToggleBlameLine<CR>
 " autocmd BufEnter * EnableBlameLine
 
 let g:NERDTreeMinimalUI=1
