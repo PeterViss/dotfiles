@@ -28,7 +28,6 @@ babel.config.js
 bin
 coffeelint.json
 config.ru
-db
 doc
 docker
 docker-compose.yml
