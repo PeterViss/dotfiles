@@ -1,0 +1,104 @@
+#SKHD STUFF
+
+# if you're having troubles finding key codes for a key just type skhd --observe in a terminal and type a key. Pretty cool! Or just check the wiki.
+
+## HYPER == SHIFT + CMD + ALT + OPTION
+
+## Quickly restart the yabai launch agent
+# ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+
+## Close active application
+# alt + shift - backspace : $(yabai -m window $(yabai -m query --windows --window | jq -re ".id") --close)
+
+## open terminal
+# alt + shift - t : /Applications/iTerm.app/Contents/MacOS/iTerm2
+
+## focus display
+alt - k : (yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus last)
+alt - j : (yabai -m window --focus stack.prev || yabai -m window --focus prev || yabai -m window --focus first)
+
+## Open / Focus Application
+alt - t : open -a iTerm
+alt - c : open -a Google\ Chrome
+alt - s : open -a Slack
+alt - z : open -a Zoom.us
+alt - m : open -a Spotify
+alt - f : open -a Finder
+alt - p : open -a System\ Preferences
+alt - n : open -a Notes
+alt - b : open -a Firefox
+
+## focus monitor
+alt - e : yabai -m display --focus 1 || yabai -m window --focus stack.first
+alt - w : yabai -m display --focus 2 || yabai -m window --focus stack.first
+alt - r : yabai -m display --focus 3 || yabai -m window --focus stack.first
+
+# move current display to window and follow focus
+alt + shift - e : /Users/peterviss/.config/custom-scripts/move-window-and-focus.sh 1
+alt + shift - w : /Users/peterviss/.config/custom-scripts/move-window-and-focus.sh 2
+alt + shift - r : /Users/peterviss/.config/custom-scripts/move-window-and-focus.sh 3
+
+## toggle window fullscreen zoom
+alt - 1 : yabai -m space --layout bsp
+alt - 2 : yabai -m space --layout stack
+alt - 3 : yabai -m space --layout float
+alt - 4 : yabai -m window --toggle split
+
+## rotating focused screen on window
+# alt + shift - f : yabai -m window --swap first
+# alt + shift - l : yabai -m window --swap last
+# alt + shift - p : yabai -m window --swap prev
+# alt + shift - b : yabai -m window --swap recent
+
+alt + shift - h : yabai -m window --swap west
+alt + shift - j : yabai -m window --swap south
+alt + shift - k : yabai -m window --swap north
+alt + shift - l : yabai -m window --swap east
+
+## rotate tree 90
+# alt + shift - m : yabai -m space --rotate 90
+
+# Toggle focus on a stack
+alt - tab : yabai -m window --focus stack.next || yabai -m window --focus stack.first
+
+#create a stack
+alt - space : (yabai -m window --stack north || yabai -m window --stack east || yabai -m window --stack south || yabai -m window --stack west && yabai -m window --focus west)
+
+# stack next window onto current window
+# alt - backspace : window=$(yabai -m query --windows --window | jq -r '.id') && (yabai -m window $window --toggle float && yabai -m window $window --toggle float && yabai -m window --focus west)
+
+## toggle window split type
+# alt - e : yabai -m window --toggle split
+
+## toggle window border
+# shift + alt - i : yabai -m window --toggle border
+
+## destroy desktop
+# cmd + alt - w : yabai -m space --destroy
+
+## fast focus desktop
+#cmd + alt - x : yabai -m space --focus last
+#cmd + alt - z : yabai -m space --focus prev
+#cmd + alt - c : yabai -m space --focus next
+#cmd + alt - 1 : yabai -m space --focus 1
+#cmd + alt - 2 : yabai -m space --focus 2
+#cmd + alt - 3 : yabai -m space --focus 3
+#cmd + alt - 4 : yabai -m space --focus 4
+#cmd + alt - 5 : yabai -m space --focus 5
+#cmd + alt - 6 : yabai -m space --focus 6
+#cmd + alt - 7 : yabai -m space --focus 7
+#cmd + alt - 8 : yabai -m space --focus 8
+#cmd + alt - 9 : yabai -m space --focus 9
+#cmd + alt - 0 : yabai -m space --focus 10
+
+## move window
+shift + ctrl - a : yabai -m window --move rel:-20:0
+shift + ctrl - s : yabai -m window --move rel:0:20
+shift + ctrl - w : yabai -m window --move rel:0:-20
+shift + ctrl - d : yabai -m window --move rel:20:0
+
+## Swap window
+# hyper - y : yabai -m window --warp west
+# shift + cmd - j : yabai -m window --warp south
+# shift + cmd - k : yabai -m window --warp north
+# hyper - 0x21 : yabai -m window --warp east # "[" key
