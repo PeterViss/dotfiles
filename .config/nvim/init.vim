@@ -1,49 +1,55 @@
 call plug#begin()
-Plug 'mattn/emmet-vim'
-Plug 'tveskag/nvim-blame-line'
-Plug 'michaeljsmith/vim-indent-object'
-" Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'Raimondi/delimitMate'
-Plug 'mhartington/oceanic-next'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'beautify-web/js-beautify'
-Plug 'bogado/file-line'
-Plug 'Yggdroot/indentLine'
-Plug 'drewtempelmeyer/palenight.vim'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'vim-airline/vim-airline'
-Plug 'joshdick/onedark.vim'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'neoclide/coc.nvim',{'branch': 'release'}
-Plug 'vim-syntastic/syntastic'
-Plug 'ngmy/vim-rubocop'
-Plug 'ayu-theme/ayu-vim'
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'ryanoasis/vim-devicons'
-Plug 'haishanh/night-owl.vim'
-Plug 'flrnd/plastic.vim'
-Plug 'sheerun/vim-polyglot'
-Plug 'jgdavey/vim-blockle'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-git'
-Plug 'tpope/vim-ragtag'
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-rake'
-Plug 'tpope/vim-rbenv'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-vividchalk'
-Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-bundler'
-Plug 'tpope/vim-unimpaired'
-Plug 'onemanstartup/vim-slim'
-Plug 'scrooloose/nerdTree'
+  Plug 'AndrewRadev/splitjoin.vim'
+  Plug 'itmammoth/run-rspec.vim'
+  Plug 'mattn/emmet-vim'
+  Plug 'tveskag/nvim-blame-line'
+  Plug 'michaeljsmith/vim-indent-object'
+  Plug 'junegunn/fzf'
+  Plug 'junegunn/fzf.vim'
+  Plug 'Raimondi/delimitMate'
+  Plug 'mhartington/oceanic-next'
+  Plug 'glepnir/oceanic-material'
+  Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'bogado/file-line'
+  Plug 'Yggdroot/indentLine'
+  Plug 'drewtempelmeyer/palenight.vim'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'Rigellute/rigel'
+  Plug 'neoclide/coc.nvim',{'branch': 'release'}
+  Plug 'dense-analysis/ale'
+  Plug 'ngmy/vim-rubocop'
+  Plug 'ayu-theme/ayu-vim'
+  Plug 'ntpeters/vim-better-whitespace'
+  Plug 'ryanoasis/vim-devicons'
+  Plug 'haishanh/night-owl.vim'
+  Plug 'tjammer/blayu.vim'
+  Plug 'zanglg/nova.vim'
+  Plug 'flrnd/plastic.vim'
+  Plug 'sheerun/vim-polyglot'
+  Plug 'morhetz/gruvbox'
+  Plug 'tpope/vim-commentary'
+  Plug 'tpope/vim-endwise'
+  Plug 'tpope/vim-git'
+  Plug 'tpope/vim-ragtag'
+  Plug 'tpope/vim-rails'
+  Plug 'tpope/vim-rake'
+  Plug 'tpope/vim-rbenv'
+  Plug 'tpope/vim-repeat'
+  Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-vividchalk'
+  Plug 'tpope/vim-abolish'
+  Plug 'tpope/vim-eunuch'
+  Plug 'tpope/vim-bundler'
+  Plug 'tpope/vim-unimpaired'
+  Plug 'lifepillar/vim-solarized8'
+  Plug 'scrooloose/nerdTree'
+  Plug 'mhinz/vim-signify'
+  Plug 'RRethy/nvim-base16'
+  Plug 'joshdick/onedark.vim'
 call plug#end()
+
 set number
 " set textwidth=0
 set showmatch
@@ -65,7 +71,7 @@ command! MakeTags !ctags -R .
 set hlsearch
 
 set smartcase
-set ignorecase
+" set ignorecase
 set synmaxcol=3000
 set incsearch
 
@@ -73,7 +79,8 @@ set autoindent
 set expandtab
 set shiftwidth=2
 set softtabstop=2
-set tabstop=8
+set tabstop=2
+set smarttab
 set nojoinspaces
 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
@@ -104,35 +111,73 @@ set signcolumn=yes
 
 set omnifunc=htmlcomplete#CompleteTags
 
-" FZF STUFF
-command! -bang AppFiles call fzf#vim#files('app/', <bang>0)
-command! -bang CsFiles call fzf#vim#files('app/assets/javascripts', <bang>0)
-command! -bang JsFiles call fzf#vim#files('app/javascript/src/', <bang>0)
-command! -bang Src call fzf#vim#files('src/', <bang>0)
-command! -bang EOperation call fzf#vim#files('app/operations/', <bang>0)
-" command! -bang JRg call fzf#vim#grep('app/assets/javascripts', <bang>0)
+set statusline+=%#warningmsg#
+set statusline+=%*
+
+" vim-rails
+let g:rails_projections = {
+  \ "app/operations/*.rb": {
+  \ "command": "operation",
+  \ "affinity": "collection",
+  \ "test": "spec/operations/%i_spec.rb",
+  \ "template": "class {dirname|camelcase|capitalize}\n  class {basename|camelcase|capitalize}\n\    include Interactor\n\n    def call\n    end\n  end\nend"
+  \ },
+  \ "app/presenters/*.rb": {
+  \ "command": "presenter",
+  \ "affinity": "collection",
+  \ "test": "spec/presenters/%i_spec.rb",
+  \ "template": "class {dirname|camelcase|capitalize}\n  class {basename|camelcase|capitalize}\n\    include Interactor\n\n    def call\n    end\n  end\nend"
+  \ },
+  \ "app/javascript/src/*": {
+  \ "command": "javascript",
+  \ "affinity": "collection",
+  \ "template": "class {dirname|camelcase|capitalize}\n  class {basename|camelcase|capitalize}\n\    include Interactor\n\n    def call\n    end\n  end\nend"
+  \ },
+\ }
+
+" enable true colors support
+set termguicolors
+syntax on
+colorscheme OceanicNext
 
 "autocmd StdinReadPre * let s:std_in=1
 let g:indentLine_concealcursor = '2'
 let g:indentLine_char = "¦"
-"let g:syntastic_javascript_checkers=['eslint']
-let g:syntastic_ruby_checkers = ['rubocop', 'mri', 'jruby']
-let g:syntastic_auto_jump = 0
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_coffeescript_checkers = ['coffeelint']
 
-set termguicolors     " enable true colors support
-set background=dark
-syntax on
-colorscheme OceanicNext
-hi Search guibg=DarkGrey guifg=Black ctermbg=DarkGrey ctermfg=Black
-hi IncSearch guibg=DarkGrey guifg=Black ctermbg=DarkGrey ctermfg=Black
-" hi CursorLine   cterm=NONE ctermbg=LightGrey ctermfg=NONE guibg=LightGrey guifg=LightGrey
-" hi CursorColumn cterm=NONE ctermbg=LightGrey ctermfg=NONE guibg=LightGrey guifg=LightGrey
+" ALE Global Configuration
+let g:ale_lint_on_save = 0
+" let g:ale_set_loclist = 0
+" let g:ale_set_quickfix = 1
+" let g:ale_open_list = 0
+" let g:ale_list_vertical = 1
+let g:ale_echo_cursor = 0
+let g:ale_virtualtext_cursor = 2
+" let g:ale_cursor_detail= 1
+let g:ale_floating_preview = 1 " Equivalent to the two below
+" let g:ale_detail_to_floating_preview = 1
+" let g:ale_hover_to_floating_preview = 1
+let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰', '│', '─']
+let g:ale_close_preview_on_insert = 1
 
+nmap <silent> ge <Plug>(ale_detail)
+nmap <silent> gp <Plug>(ale_previous_wrap)
+nmap <silent> gn <Plug>(ale_next_wrap)
+let g:ale_sign_error = ' '
+let g:ale_sign_warning = ' '
+let g:ale_sign_info = ' '
+let g:ale_virtualtext_prefix = '• '
+
+highlight ALEErrorSign ctermfg=1 ctermbg=18 guifg=#2d2d2d guibg=#393939
+highlight ALEVirtualTextError cterm=italic ctermfg=1 guifg=#2d2d2d
+highlight link ALEWarningSign Todo
+highlight ALEInfoSign ctermfg=4 ctermbg=18 guifg=#2d2d2d guibg=#393939
+highlight ALEVirtualTextInfo cterm=italic ctermfg=4 guifg=#2d2d2d
+
+highlight ALEError term=underline cterm=underline,bold gui=underline,bold
+highlight ALEWarning term=underline cterm=undercurl gui=undercurl
+highlight ALEInfo term=underline cterm=undercurl gui=undercurl
+
+let g:rainbow_active = 1
 let g:airline_symbols={}
 let g:airline_symbols.maxlinenr = ''
 let g:airline_skip_empty_sections = 1
@@ -141,9 +186,16 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#whitespace#enabled = 0
 let g:lightline = { 'colorscheme': 'oceanicnext' }
 
+let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#ale#warning_symbol = ' '
+let g:airline#extensions#ale#error_symbol = ' '
+let g:airline#extensions#ale#checking_symbol = ''
+let g:airline#extensions#ale#open_lnum_symbol = ' :'
+let g:airline#extensions#ale#close_lnum_symbol = ''
+
 let g:blameLineGitFormat = '%an / %ar / %s'
 let g:blameLineUseVirtualText = 1
-nnoremap <silent> <leader>B :ToggleBlameLine<CR>
+nnoremap <silent> <leader>b :ToggleBlameLine<CR>
 " autocmd BufEnter * EnableBlameLine
 
 let g:NERDTreeMinimalUI=1
@@ -151,7 +203,6 @@ let g:NERDTreeMinimalUI=1
 let NERDTreeShowLineNumbers=1
 " make sure relative line numbers are used
 autocmd FileType nerdtree setlocal relativenumber
-map <C-n> :NERDTreeToggle<CR>
 
 " format json files with '='
 autocmd FileType json setlocal equalprg=python\ -m\ json.tool
@@ -160,14 +211,13 @@ autocmd FileType json setlocal equalprg=python\ -m\ json.tool
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
 
-let g:polyglot_disabled= ['slim']
-
 " nnoremap <silent> <C-Right> <c-w>l
 " nnoremap <silent> <C-Left> <c-w>h
 " nnoremap <silent> <C-Up> <c-w>k
 " nnoremap <silent> <C-Down> <c-w>j
 nnoremap <S-Right> :bn<CR>
 nnoremap <S-Left> :bp<CR>
+
 "COC CONFIGURATION
 "
 " CocInstall
@@ -262,8 +312,8 @@ omap af <Plug>(coc-funcobj-a)
 " xmap <silent> <TAB> <Plug>(coc-range-select)
 
 " Custom Map Coc Errors
-nmap <silent> <c-k> <Plug>(coc-diagnostic-prev)
-nmap <silent> <c-j> <Plug>(coc-diagnostic-next)
+nmap <silent> <c-n> <Plug>(coc-diagnostic-prev)
+nmap <silent> <c-p> <Plug>(coc-diagnostic-next)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
@@ -295,9 +345,8 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 "
-
-
 "END OF COC CONFIGURATION
+
 nmap <Up> <Nop>
 nmap <Right> <Nop>
 nmap <Left> <Nop>
